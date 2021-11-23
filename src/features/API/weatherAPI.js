@@ -8,7 +8,6 @@ export default class Api {
   }
   async getForecast() {
     const response = await axios.get(`${this.API_SOURCE}?q=${this.city}&appid=${this.API_KEY}`);
-    console.log(response);
     return response.data;
   }
 }

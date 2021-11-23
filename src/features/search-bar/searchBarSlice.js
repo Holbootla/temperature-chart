@@ -3,7 +3,7 @@ import Api from '../API/weatherAPI';
 
 const initialState = {
   city: '',
-  forecastData: '',
+  forecastData: null,
   loading: false,
   error: false,
 };
@@ -24,6 +24,7 @@ export const searchBarSlice = createSlice({
   extraReducers: {
     [getForecast.fulfilled]: (state, action) => {
       state.forecastData = action.payload.list;
+      console.log(action.payload.list);
     },
     [getForecast.pending]: (state) => {
       state.loading = true;
