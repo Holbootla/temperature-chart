@@ -1,13 +1,22 @@
 import React from 'react';
+import { Container } from '@mui/material/';
 import { SearchBar } from './features/search-bar/SearchBar';
 import { Chart } from './features/chart/Chart';
 
 function App() {
   return (
-    <div className='App'>
+    <Container
+      maxWidth='sm'
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <SearchBar />
       <Chart />
-    </div>
+    </Container>
   );
 }
 
