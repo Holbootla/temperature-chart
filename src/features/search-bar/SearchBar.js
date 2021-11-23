@@ -1,21 +1,23 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TextField, Button, FormControl } from '@mui/material/';
-import { setSearchingCity } from './searchBarSlice';
+import { getForecast, setCity, selectSearchBar } from './searchBarSlice';
 
 export function SearchBar() {
   const dispatch = useDispatch();
+  const { city } = useSelector(selectSearchBar);
 
   const handleChange = (e) => {
     const searchingCity = e.target.value;
-    dispatch(setSearchingCity(searchingCity));
+    dispatch(setCity(searchingCity));
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    dispatch(getForecast(city));
+  };
 
   return (
     <FormControl
-      onSubmit={handleSubmit}
       sx={{
         display: 'flex',
         flexDirection: 'row',
@@ -30,7 +32,7 @@ export function SearchBar() {
         onChange={handleChange}
         sx={{ m: 1 }}
       />
-      <Button variant='contained' size='large' type='submit' sx={{ m: 1 }}>
+      <Button variant='contained' size='large' type='submit' sx={{ m: 1 }} onClick={handleSubmit}>
         Search
       </Button>
     </FormControl>

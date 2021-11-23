@@ -1,21 +1,41 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import Api from '../API/weatherAPI';
 
 const initialState = {
-  searchingCity: '',
+  city: '',
+  forecastData: '',
+  loading: false,
+  error: false,
 };
+
+export const getForecast = createAsyncThunk('searchBar/getForecast', async (city) => {
+  const api = new Api(city);
+  return await api.getForecast();
+});
 
 export const searchBarSlice = createSlice({
   name: 'searchBar',
   initialState,
   reducers: {
-    setSearchingCity: (state, action) => {
-      state.searchingCity = action.payload;
+    setCity: (state, action) => {
+      state.city = action.payload;
+    },
+  },
+  extraReducers: {
+    [getForecast.fulfilled]: (state, action) => {
+      state.forecastData = action.payload.list;
+    },
+    [getForecast.pending]: (state) => {
+      state.loading = true;
+    },
+    [getForecast.rejected]: (state) => {
+      state.error = true;
     },
   },
 });
 
-export const { setSearchingCity } = searchBarSlice.actions;
+export const { setCity } = searchBarSlice.actions;
 
-export const selectCity = (state) => state.searchBar.searchingCity;
+export const selectSearchBar = (state) => state.searchBar;
 
 export default searchBarSlice.reducer;
