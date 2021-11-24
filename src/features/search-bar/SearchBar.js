@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TextField, Button, FormControl } from '@mui/material/';
 import { getForecast, setCity, selectSearchBar } from './searchBarSlice';
 
 export function SearchBar() {
@@ -12,29 +11,15 @@ export function SearchBar() {
     dispatch(setCity(searchingCity));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(getForecast(city));
   };
 
   return (
-    <FormControl
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <TextField
-        id='outlined-search'
-        label='City'
-        type='search'
-        onChange={handleChange}
-        sx={{ m: 1 }}
-      />
-      <Button variant='contained' size='large' type='submit' sx={{ m: 1 }} onClick={handleSubmit}>
-        Search
-      </Button>
-    </FormControl>
+    <form className='search-form' onClick={handleSubmit}>
+      <input id='outlined-search' type='search' onChange={handleChange} sx={{ m: 1 }} />
+      <button type='submit'>Search</button>
+    </form>
   );
 }
