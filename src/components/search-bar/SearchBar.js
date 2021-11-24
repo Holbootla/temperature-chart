@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getForecast, setCity, selectSearchBar } from './searchBarSlice';
+import { getForecast, setCity, selectSearchBar } from '../../redux/searchBarSlice';
 import './SearchBar.css';
 
 export function SearchBar() {

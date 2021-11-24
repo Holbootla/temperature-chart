@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Chart } from 'react-google-charts';
-import { selectSearchBar } from '../search-bar/searchBarSlice';
+import { selectSearchBar } from '../../redux/searchBarSlice';
 
 export function TemperatureChart() {
   const { forecastData } = useSelector(selectSearchBar);
