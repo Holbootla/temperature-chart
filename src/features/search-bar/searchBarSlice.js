@@ -24,13 +24,14 @@ export const searchBarSlice = createSlice({
   extraReducers: {
     [getForecast.fulfilled]: (state, action) => {
       state.forecastData = action.payload.list;
-      console.log(action.payload.list);
+      state.error = false;
     },
     [getForecast.pending]: (state) => {
       state.loading = true;
     },
     [getForecast.rejected]: (state) => {
       state.error = true;
+      state.forecastData = null;
     },
   },
 });

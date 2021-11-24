@@ -17,7 +17,7 @@ export function SearchBar() {
   };
 
   return (
-    <form className='search-form' onClick={handleSubmit}>
+    <form className='search-form' onSubmit={handleSubmit}>
       <input id='outlined-search' type='search' onChange={handleChange} sx={{ m: 1 }} />
       <button type='submit'>Search</button>
     </form>
