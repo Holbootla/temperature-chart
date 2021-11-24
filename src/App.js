@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { SearchBar } from './features/search-bar/SearchBar';
-import { Chart } from './features/chart/Chart';
+import { TemperatureChart } from './features/chart/Chart';
 import { NotFound } from './features/not-found/NotFound';
 import { Loader } from './features/loader/Loader';
 import { selectSearchBar } from './features/search-bar/searchBarSlice';
@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <SearchBar />
-      {forecastData && <Chart />}
+      {forecastData && <TemperatureChart />}
       {error && <NotFound />}
       {loading && <Loader />}
     </>

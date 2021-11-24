@@ -1,50 +1,30 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  LabelList,
-} from 'recharts';
+import { Chart } from 'react-google-charts';
 import { selectSearchBar } from '../search-bar/searchBarSlice';
 
-export function Chart() {
+export function TemperatureChart() {
   const { forecastData } = useSelector(selectSearchBar);
 
   const data = forecastData.map((el) => {
-    return {
-      date: el.dt_txt,
-      temp: Math.round(el.main.temp).toString(),
-    };
+    return [el.dt_txt, Math.round(el.main.temp)];
   });
 
+  data.unshift(['Date and time', 'Temperature C°']);
+
   return (
-    <ResponsiveContainer width={'100%'} height={'100%'}>
-      <BarChart
-        width={500}
-        height={300}
+    <>
+      <Chart
+        width={'100%'}
+        height={'500px'}
+        chartType='Bar'
         data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
+        options={{
+          chart: {
+            title: 'Temperature chart',
+          },
         }}
-      >
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='date' />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey='temp' name='Temperature C&#176;' fill='crimson'>
-          <LabelList dataKey='temp' position='insideTop' />
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+      />
+    </>
   );
 }
