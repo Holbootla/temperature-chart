@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getForecast, setCity, selectSearchBar } from './searchBarSlice';
+import './SearchBar.css';
 
 export function SearchBar() {
   const dispatch = useDispatch();
@@ -18,8 +19,15 @@ export function SearchBar() {
 
   return (
     <form className='search-form' onSubmit={handleSubmit}>
-      <input id='outlined-search' type='search' onChange={handleChange} sx={{ m: 1 }} />
-      <button type='submit'>Search</button>
+      <input
+        className='search-input'
+        type='search'
+        onChange={handleChange}
+        placeholder='enter city'
+      />
+      <button className='search-button' type='submit'>
+        Search
+      </button>
     </form>
   );
 }

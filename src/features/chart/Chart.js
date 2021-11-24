@@ -28,7 +28,7 @@ export function Chart() {
   }, [data]);
 
   return (
-    <ResponsiveContainer width={'100%'} height={300}>
+    <ResponsiveContainer width={'100%'} height={'100%'}>
       <BarChart
         width={500}
         height={300}
@@ -45,8 +45,8 @@ export function Chart() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey='temp' name='Temperature C&#176;' fill='green'>
-          <LabelList dataKey='temp' position='top' />
+        <Bar dataKey='temp' name='Temperature C&#176;' fill='crimson'>
+          <LabelList dataKey='temp' position='insideTop' />
         </Bar>
       </BarChart>
     </ResponsiveContainer>
