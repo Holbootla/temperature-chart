@@ -25,6 +25,7 @@ export const searchBarSlice = createSlice({
     [getForecast.fulfilled]: (state, action) => {
       state.forecastData = action.payload.list;
       state.error = false;
+      state.loading = false;
     },
     [getForecast.pending]: (state) => {
       state.loading = true;
@@ -32,6 +33,7 @@ export const searchBarSlice = createSlice({
     [getForecast.rejected]: (state) => {
       state.error = true;
       state.forecastData = null;
+      state.loading = false;
     },
   },
 });
