@@ -2,15 +2,15 @@ import axios from 'axios';
 
 export default class Api {
   constructor(city) {
-    this.API_KEY = 'fd6f65748b2fbec9a43a04f79cde91d1';
-    this.API_SOURCE = 'https://api.openweathermap.org/data/2.5/forecast/';
-    this.city = city;
+    this.API_KEY = process.env.REACT_APP_API_KEY;
+    this.API_SOURCE = process.env.REACT_APP_API_SOURCE;
     this.units = 'metric';
+    this.apiInstance = axios.create({
+      baseURL: `${this.API_SOURCE}?q=${city}&units=${this.units}&appid=${this.API_KEY}`,
+    });
   }
   async getForecast() {
-    const response = await axios.get(
-      `${this.API_SOURCE}?q=${this.city}&units=${this.units}&appid=${this.API_KEY}`
-    );
+    const response = await this.apiInstance.get();
     return response.data;
   }
 }
